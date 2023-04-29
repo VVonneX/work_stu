@@ -17,19 +17,14 @@ public class University {
     @Column(name = "fuckyltet_of_university")
     private String fuckyltet;
 
-   // @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    // @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(mappedBy = "university", fetch = FetchType.LAZY)
-     private List<Student> students;
+    private List<Student> students;
     //private List<Student> students = new ArrayList<>();
 
-    public University( Long id, String name, String fuckyltet, List<Student> students) {
-        this.id = id;
-        this.name = name;
-        this.fuckyltet = fuckyltet;
-        this.students = students;
+    public University() {
     }
-
-    public University() {}
 
     public String getName() {
         return name;
@@ -39,7 +34,9 @@ public class University {
         this.name = name;
     }
 
-    public Long getId() {return id;}
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -53,11 +50,11 @@ public class University {
         this.fuckyltet = fuckyltet;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public List<Student> getStudents() {
-        return this.students;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

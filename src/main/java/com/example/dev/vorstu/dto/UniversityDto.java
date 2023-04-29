@@ -1,5 +1,7 @@
 package com.example.dev.vorstu.dto;
 
+import java.util.List;
+
 public class UniversityDto {
     private Long id;
 
@@ -7,11 +9,7 @@ public class UniversityDto {
 
     private String fuckyltet;
 
-    public UniversityDto(Long id, String name, String fuckyltet) {
-        this.id = id;
-        this.name = name;
-        this.fuckyltet = fuckyltet;
-    }
+    private List<StudentDto> students;
 
     public UniversityDto() {
     }
@@ -40,4 +38,11 @@ public class UniversityDto {
         this.fuckyltet = fuckyltet;
     }
 
+    public List<StudentDto> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<StudentDto> students) {
+        this.students = students;
+    }
 }

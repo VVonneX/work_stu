@@ -1,5 +1,7 @@
 package com.example.dev.vorstu.dto;
 
+import com.example.dev.vorstu.model.University;
+
 // изменили university на universityId. чтобы вместо всего json только принимать id
 public class StudentDto {
     private Long id;
@@ -7,17 +9,17 @@ public class StudentDto {
     private String group;
     private String phoneNumber;
 
-    private Long universityId;
+    private UniversityDto university;
 
     public StudentDto() {
     }
 
-    public StudentDto(Long id, String fio, String group, String phoneNumber, Long universityId) {
+    public StudentDto(Long id, String fio, String group, String phoneNumber, UniversityDto university) {
         this.id = id;
         this.fio = fio;
         this.group = group;
         this.phoneNumber = phoneNumber;
-        this.universityId = universityId;
+        this.university = university;
     }
 
     public String getFio() {
@@ -52,11 +54,11 @@ public class StudentDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getUniversity() {
-        return universityId;
+    public UniversityDto getUniversity() {
+        return university;
     }
 
-    public void setUniversity(Long universityId) {
-        this.universityId = universityId;
+    public void setUniversity(UniversityDto university) {
+        this.university = university;
     }
 }

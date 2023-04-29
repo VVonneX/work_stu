@@ -2,6 +2,7 @@ package com.example.dev.vorstu.service;
 
 import com.example.dev.vorstu.dto.StudentDto;
 import com.example.dev.vorstu.mappers.StudentMapper;
+import com.example.dev.vorstu.mappers.UniversityMapper;
 import com.example.dev.vorstu.model.Student;
 import com.example.dev.vorstu.repositories.StudentRepository;
 import com.example.dev.vorstu.repositories.UniversityRepository;
@@ -14,14 +15,22 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService {
 
-    @Autowired
-    private StudentRepository studentRepository;
+
+    private final StudentRepository studentRepository;
+
+    private final UniversityRepository universityRepository;
+
+    private final StudentMapper studentMapper;
+
+    private final UniversityMapper universityMapper;
 
     @Autowired
-    private UniversityRepository universityRepository;
-
-    @Autowired
-    private StudentMapper studentMapper;
+    public StudentService(StudentRepository studentRepository, UniversityRepository universityRepository, StudentMapper studentMapper, UniversityMapper universityMapper) {
+        this.studentRepository = studentRepository;
+        this.universityRepository = universityRepository;
+        this.studentMapper = studentMapper;
+        this.universityMapper = universityMapper;
+    }
 
     public List<StudentDto> getAllStudents() {
 
@@ -29,17 +38,8 @@ public class StudentService {
                 .stream()
                 .map(student -> studentMapper.convert(student))
                 .collect(Collectors.toList());
-    }
 
-  /*  public List<StudentDto> getAllStudents() {
-        List<Student> students = studentRepository.findAll();
-        List<StudentDto> studentDto = students.stream().map(el -> {
-            StudentDto dto = StudentDto.convertToDto(el);
-            dto.setUniversity(UniversityDto.convertToDto(el.getUniversity()));
-            return dto;
-        }).collect(Collectors.toList());
-        return studentDto;
-    }*/
+    }
 
     public StudentDto getStudentId(Long id) {
         Student student = studentRepository.findById(id).orElseThrow(
@@ -51,8 +51,8 @@ public class StudentService {
     }
 
     public StudentDto addStudent(StudentDto studentDto) {
-        Student toSave = studentMapper.convert(new Student(), studentDto);
-
+        Student toSave = studentMapper.convert(studentDto);
+      //  studentDto.setUniversity(universityMapper.convert(studentDto.getUniversity(), new UniversityDto()));
         return studentMapper.convert(studentRepository.save(toSave));
     }
 

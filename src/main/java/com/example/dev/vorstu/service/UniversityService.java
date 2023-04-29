@@ -47,7 +47,7 @@ public class UniversityService {
     public UniversityDto addUniversity(UniversityDto universityDto) {
 
         //конвертация из дто в сущность
-        University toSave = universityMapper.convert(new University(), universityDto);
+        University toSave = universityMapper.convert(universityDto);
 
         //сохранение и конвертация из сущности в дто
         return universityMapper.convert(universityRepository.save(toSave));
