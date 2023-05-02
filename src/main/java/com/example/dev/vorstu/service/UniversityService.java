@@ -1,6 +1,7 @@
 package com.example.dev.vorstu.service;
 
 import com.example.dev.vorstu.dto.UniversityDto;
+import com.example.dev.vorstu.mappers.StudentMapper;
 import com.example.dev.vorstu.mappers.UniversityMapper;
 import com.example.dev.vorstu.model.University;
 import com.example.dev.vorstu.repositories.StudentRepository;
@@ -14,14 +15,18 @@ import java.util.stream.Collectors;
 @Service
 public class UniversityService {
 
-    @Autowired
-    private UniversityRepository universityRepository;
+    private final UniversityRepository universityRepository;
+    private final StudentRepository studentRepository;
+    private final UniversityMapper universityMapper;
+    private final StudentMapper studentMapper;
 
     @Autowired
-    private StudentRepository studentRepository;
-
-    @Autowired
-    private UniversityMapper universityMapper;
+    public UniversityService(UniversityRepository universityRepository, StudentRepository studentRepository, UniversityMapper universityMapper, StudentMapper studentMapper) {
+        this.universityRepository = universityRepository;
+        this.studentRepository = studentRepository;
+        this.universityMapper = universityMapper;
+        this.studentMapper = studentMapper;
+    }
 
     public List<UniversityDto> getAllUniversity() {
         //достал из бд все университеты

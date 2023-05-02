@@ -22,14 +22,6 @@ public class Student {
     @JoinColumn(name = "university_id", referencedColumnName = "university_id")
     private University university;
 
-    public Student(Long id, String fio, String group, String phoneNumber, University university) {
-        this.id = id;
-        this.fio = fio;
-        this.group = group;
-        this.phoneNumber = phoneNumber;
-        this.university = university;
-    }
-
     public Student() {
     }
 

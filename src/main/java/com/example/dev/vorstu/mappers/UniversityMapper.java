@@ -20,4 +20,5 @@ public interface UniversityMapper {
     @Mapping(target = "university", ignore = true)
     StudentDto convert(Student entity);
 
+
 }
